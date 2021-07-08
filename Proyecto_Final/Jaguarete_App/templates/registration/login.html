@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% load crispy_forms_filters %}
+{%load static %}        
+
+       {% block title %}Login {% endblock %}
+       {%block body%}
+       <div class="container">
+              <form action="" method="POST">
+                     {% csrf_token %}
+                     <div class="container">
+                            <form>
+                                   <div class="mb-3">
+                                          {{form | crispy}}
+                                   </div>
+                                   <button type="submit"  style="background-color: #44126b;" class="btn btn-primary">Login</button>
+                                   <a class="btn btn-dark" style="background-color: #44126b;"  href="{%url 'registro'%}" role="button">Registro</a>
+                                   
+                            </form>
+                                   
+                     </div>
+                     
+                     
+
+                     
+                     
+              </form>
+              
+            </div>
+	{%endblock%}

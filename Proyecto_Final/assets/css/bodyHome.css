@@ -1,0 +1,12 @@
+.cards{
+       display: grid;
+       grid: 100px / auto auto auto;
+       grid-gap: 15%;
+       
+}
+.card > div {
+       
+       text-align: center;
+       padding: 13px 0;
+       font-size: 25px;
+     }

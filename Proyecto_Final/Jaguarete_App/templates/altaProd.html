@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{%load static %}   
+  
+
+       {% block title %}Nuevo Producto {% endblock %}
+       {%block body%}
+       <div class="container">
+              
+              <form action="{%url 'altaProd'%}" method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}   
+                     <div class="form-row">
+                       <div class="form-group col-md-10">
+                         <label for="inputEmail4">Nombre</label>
+                         <input type="name" class="form-control" id="inputEmail4" placeholder="Producto">
+                       </div>
+                       
+                       <!-- <div class="form-group col-md-6">
+                         <label for="inputPassword4">Password</label>
+                         <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                       </div> -->
+                     </div>
+                     <div class="form-row">
+                            
+                            <br>
+                            <div class="form-group col-md-6">
+                                   <label for="inputState">Categoria</label>
+                                   <select id="inputState" class="form-control">
+                                   <option selected>Elija una caterogia...</option>
+                                   {% for cat in categoria %}
+                                          <option >{{cat}}</option>
+                                   {%endfor%}
+                                   </select>
+                            </div>
+                     </div>
+                     <br>
+                     <div class="form-row">
+                            <div class="form-group col-md-2">
+                                   <label for="inputZip">Descripcion</label>
+                                   <input type="text" class="form-control" id="inputZip">
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                   <label for="inputZip">Precio</label>
+                                   <input type="text" class="form-control" id="inputZip">
+                                   
+                            </div>
+                            <br>
+                            <div class="custom-file">
+                                   <input type="file" class="custom-file-input" id="customFile">
+                                   <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <br>
+                            <button type="submit" style="background-color: #44126b;"  class="btn btn-primary">Cargar Producto</button>
+                     </div>
+                     
+                   </form>
+        </div>
+	{%endblock%}

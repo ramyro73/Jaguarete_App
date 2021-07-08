@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+        <link rel="stylesheet" href="{% static '/css/header.css' %}" />
+        <link rel="icon" href="{% static 'img/logo.bmp' %}" type="image/png" />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+    </head>
+    <body>
+
+
+
+        <!-- Header -->
+        <div class="container">
+
+
+            
+            <a href="{%url 'home'%}" ><img src="{% static 'img/logo.bmp' %}" style="max-width: 200px;" type="image/bmp"alt="logo"></a>
+            <div style="position: absolute; top: 1%; left: 70%;">
+              {%if user.is_authenticated %}
+            
+              <a class="btn btn-dark" style="background-color: #44126b;"  href="#" role="button">{{user.username}}</a>
+              <a class="btn btn-dark" style="background-color: #44126b;"  href="{%url 'logout'%}" role="button">Cerrar Session</a>
+              
+                     
+              {% else %}
+                     <a class="btn btn-dark" style="background-color: #44126b;"  href="{%url 'login'%}" role="button">Login</a>
+                     <a class="btn btn-dark" style="background-color: #44126b;"  href="{%url 'registro'%}" role="button">Registro</a>
+  
+              {%endif%}
+              <a class="btn btn-dark" style="background-color: #44126b;" href="{%url 'carrito'%}" role="button">Carrito</a>
+            </div>
+            
+        </div>
+
+
+        
+
+        <!-- Header -->
+
+
+        <!-- Menu -->
+        <div class="container">
+
+            <nav class="navbar navbar-expand-lg navbar navbar-dark ml-auto" style="background-color: #44126b;">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav" >
+                  
+                    <a class="nav-link" style="color: #ffffff"href="{%url 'home'%}">Home</a>
+        
+
+                    
+                    <li class="nav-item">
+                      <div class="dropdown">
+                          <a type="button" class="nav-link dropdown-toggle" style="color: #ffffff" data-toggle="dropdown">
+                          Categorias
+                          </a>
+                          <div class="dropdown-menu" style="background-color: #44126b">
+                            
+                            
+
+                            {% for categoria in categoria %}
+                              <a class="dropdown-item"  style="color: #ffffff" href="{% url 'filtroCategoria' categoria.id%}">{{ categoria }}</a>
+                            {% endfor %}
+
+                          </div>
+                      </div>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'acerca'%}" style="color: #ffffff" >Acerca de...</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" style="color: #ffffff"href="{%url 'contacto' %}">Contacto</a>
+                  </li>
+                  {%if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" style="color: #ffffff" href="{%url 'altaProd' %}">Nuevo Producto</a>
+                  </li>
+                  {%endif%}
+                  
+                  <div style="position: absolute; top: 30 px; left: 70%;">
+                    <form  action ="buscar"  class="form-inline">
+                      <input class="form-control mr-sm-2" type="search" name ="prod" placeholder="Buscar Producto" aria-label="Search">
+                      <button class="btn btn-success" style="background-color: #44126b; position: absolute; top: 0%; left: 101%;" type="submit">Search</button>
+                    </form>
+                  </div>
+                    
+                    
+                  
+                  
+                </ul>
+              </div>
+            </nav>
+        </div>
+        <!-- Menu -->
+
+
+        <!-- Contenido -->
+        
+        {% block body %}
+              
+        {% endblock %}
+
+
+        <!-- Contenido -->
+
+
+
+        <!-- Footer -->
+        <div class="container">
+          <div class="col">
+            <div class="card">
+            <!-- <img src="{% static '/img/logo.bmp' %}" class="card-img-top" alt="..."> -->
+            <div class="card-body">
+            <h5 class="card-title">Footer</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            </div>
+          </div>
+        </div>
+            
+        
+
+        
+    </body>
+</html>

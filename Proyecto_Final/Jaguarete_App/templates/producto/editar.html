@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{% load crispy_forms_filters %}
+{%load static %}        
+
+       {% block title %}Editar Producto {% endblock %}
+       {%block body%}
+       <div class="container">
+              <form action="{%url 'editarProd' producto.id%}" method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <div class="form-row">
+                            <div class="form-row">
+                                   <div class="form-group col-md-10">
+                                          {{form | crispy}}
+                                     
+                                   </div>
+                            </div>
+                            
+
+                     
+                            <!-- agrgar funcionalidad al boton -->
+                            <div style="text-align: center; ">
+                                   <button type="submit" href="{% url 'editarProd' producto.id %}" class="btn btn-primary btn-lg" style="background-color: #44126b;"  role="button">Editar</button>
+                                   <a href="{% url 'eliminarProd' producto.id %}" class="btn btn-primary btn-lg" style="background-color: #44126b;"  role="button">Borrar</a>
+                                   
+                            </div>
+                            
+                            
+                     </div>
+                     
+                   </form>
+        </div>
+	{%endblock%}
